@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#FFF4E0"><meta name="description" content="A funny, fast and playable Tic-Tac-Toe game against Zero-Bhai.">
+  <meta property="og:title" content="ZeroKata - Fun Tic-Tac-Toe vs Zero-Bhai"><meta property="og:description" content="Zero Kata. Full Maza."><meta property="og:image" content="/assets/og-image.png"><meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/favicon.svg"><link rel="manifest" href="manifest.json?v=7">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7"><title>ZeroKata - Fun Tic-Tac-Toe vs Zero-Bhai</title>
+</head>
+<body>
+  <div class="doodle d1">✦</div><div class="doodle d2">☕</div><div class="doodle d3">〰</div>
+  <header><a class="brand" href="./" aria-label="ZeroKata home"><img src="assets/logo.svg" alt="ZeroKata — Zero Kata. Full Maza."></a><button id="themeBtn" class="icon-btn" aria-label="Toggle dark mode">◐</button></header>
+  <main>
+    <section class="intro"><p class="eyebrow">INDIA'S SILLIEST GRID FIGHT</p><h1>Zero Kata.<br><span>Full Maza.</span></h1><p>Beat Zero-Bhai, if your fingers have the courage.</p></section>
+    <section class="game-shell" aria-label="ZeroKata game">
+      <div class="controls card">
+        <div class="segmented" aria-label="Game mode"><button class="selected" data-mode="computer">VS ZERO-BHAI</button><button data-mode="friend">VS FRIEND</button></div>
+        <div id="friendNames" class="friend-names" hidden><label>PLAYER X <input id="playerXName" maxlength="14" autocomplete="nickname" placeholder="Enter name"></label><label>PLAYER O <input id="playerOName" maxlength="14" autocomplete="nickname" placeholder="Enter name"></label><small>Names save automatically. Ab match personal hoga!</small></div>
+        <label id="difficultyControl">DIFFICULTY <select id="difficulty"><option value="easy">Chill Mode</option><option value="medium">Thoda Dimaag</option><option value="hard">Zero-Bhai Unbeatable</option></select></label>
+        <div id="markControl" class="choice"><span>I PLAY AS</span><button class="mark-choice selected" data-human="X">X</button><button class="mark-choice" data-human="O">O</button></div>
+        <div class="choice"><span id="firstMoveLabel">FIRST MOVE</span><button class="first-choice selected" data-first="human">ME</button><button class="first-choice" data-first="computer">ZERO-BHAI</button></div>
+      </div>
+      <div class="play-area">
+        <div class="scoreboard" aria-label="Scoreboard"><div><b id="youLabel">YOU (X)</b><strong id="youScore">0</strong></div><div><b>DRAWS</b><strong id="drawScore">0</strong></div><div><b id="botLabel">ZERO-BHAI (O)</b><strong id="botScore">0</strong></div></div>
+        <p id="streak" class="streak" hidden>🔥 3 in a row! Hot hai tu!</p>
+        <div class="board-wrap"><div id="winLine" aria-hidden="true"></div><div id="board" class="board" role="grid" aria-label="Tic Tac Toe board"></div></div>
+        <button id="newRound" class="primary">NEW ROUND ↻</button>
+      </div>
+      <aside class="mascot-zone"><div id="bubble" class="bubble" aria-live="polite">Ready? Main toh born ready hoon.</div><div class="mascot-card"><span class="spark spark-a">✦</span><span class="spark spark-b">✦</span><span class="bot-chip">⚡ SMART MODE</span><div id="mascot" class="mascot idle" aria-label="Zero-Bhai mascot"><svg viewBox="0 0 180 190" role="img"><path class="crown" d="M55 42l9-22 26 17 26-17 9 22-12 10H67z"/><path class="sweat" d="M151 55q12 15 0 26q-12-11 0-26"/><circle class="body" cx="90" cy="100" r="70"/><path class="shine" d="M57 68q12-19 31-23"/><path class="glasses" d="M45 80h38v25H45zm52 0h38v25H97zM83 91h14"/><g class="brows"><path d="M54 68l21-5M105 63l21 5"/></g><g class="eyes"><ellipse cx="66" cy="86" rx="14" ry="19"/><ellipse cx="114" cy="86" rx="14" ry="19"/><circle cx="69" cy="89" r="5"/><circle cx="111" cy="89" r="5"/></g><g class="cheeks"><circle cx="52" cy="112" r="7"/><circle cx="128" cy="112" r="7"/></g><path class="smile" d="M62 123q28 25 58 0"/><path class="hands" d="M25 142q-22 8-17 28m147-28q22 8 17 28"/><path class="medal" d="M80 160l10 18 10-18m-17 10h14"/></svg></div><p class="mascot-name">ZERO-BHAI <small>CEO, CROSS &amp; CHAOS</small></p><p id="botStatus" class="bot-status">LEVEL 99 · GRID GURU</p></div></aside>
+    </section>
+    <section class="settings card"><strong>⚙ MASALA SETTINGS</strong><label><input id="sound" type="checkbox" checked> Sound</label><label><input id="vibration" type="checkbox" checked> Vibration</label><button id="resetScore" class="text-btn">Reset scores</button></section>
+    <section class="achievements" aria-labelledby="achievementTitle"><div class="achievement-head"><p class="eyebrow">TROPHY SHELF</p><h2 id="achievementTitle">Kamaal ke <span>Kaand</span></h2><p id="achievementProgress">Keep playing to unlock the flex.</p></div><div id="achievementGrid" class="achievement-grid"><article class="achievement" data-achievement="firstWin"><span>🥇</span><div><strong>First Blood</strong><small>Win your first match</small></div></article><article class="achievement" data-achievement="streak"><span>🔥</span><div><strong>On Fire</strong><small>Win 3 in a row</small></div></article><article class="achievement" data-achievement="guru"><span>🧠</span><div><strong>Grid Guru</strong><small>Win 5 matches</small></div></article><article class="achievement" data-achievement="draws"><span>🤝</span><div><strong>Peace Treaty</strong><small>Get 3 draws</small></div></article><article class="achievement" data-achievement="veteran"><span>⚔️</span><div><strong>Full Maza</strong><small>Play 10 matches</small></div></article></div></section>
+  </main>
+  <div id="modal" class="modal" hidden><div class="modal-card"><button id="closeModal" class="close" aria-label="Close">×</button><span id="resultEmoji">🏆</span><h2 id="resultTitle">Kya baat!</h2><p id="resultCopy"></p><button id="again" class="primary">PLAY AGAIN</button><button id="changeMode" class="secondary">CHANGE MODE</button><button id="share" class="secondary">SHARE THE FLEX ↗</button></div></div>
+  <div id="confetti" aria-hidden="true"></div><div id="live" class="sr-only" aria-live="assertive"></div>
+  <script src="script.js?v=7"></script>
+</body></html>

@@ -1,0 +1,139 @@
+:root{--paper:#fff4e0;--ink:#111;--pink:#ff5c8a;--yellow:#ffd93d;--blue:#4d8dff;--mint:#3ddc97;--orange:#ff8a3d;--shadow:6px 6px 0 var(--ink)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:radial-gradient(#1112 1px,transparent 1px) 0 0/16px 16px,var(--paper);font-family:"Space Grotesk",sans-serif;min-height:100vh;overflow-x:hidden}
+body.dark{--paper:#14121f;--ink:#fff;color:#fff;background:radial-gradient(#fff2 1px,transparent 1px) 0 0/16px 16px,var(--paper)}
+button,select{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+header{max-width:1160px;margin:auto;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start}
+.brand img{width:min(290px,70vw);filter:drop-shadow(4px 4px 0 var(--ink));animation:drop .7s cubic-bezier(.18,.89,.32,1.28)}
+.icon-btn,.close{border:3px solid var(--ink);background:var(--yellow);width:48px;height:48px;font-size:25px;box-shadow:var(--shadow);border-radius:10px}
+.icon-btn:active,.primary:active,.secondary:active,.segmented button:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+main{max-width:1160px;margin:auto;padding:0 22px 45px}
+.intro{text-align:center;margin:8px 0 20px}
+.eyebrow{display:inline-block;background:var(--blue);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:5px 10px;font-weight:700;transform:rotate(-2deg);margin:0}
+.intro h1{font:clamp(42px,8vw,82px)/.85 "Lilita One",sans-serif;margin:15px 0 10px;letter-spacing:.5px}
+.intro h1 span{color:var(--pink);text-shadow:3px 3px 0 var(--ink)}
+.intro p:last-child{font-size:18px;font-weight:700}
+.game-shell{display:grid;grid-template-columns:220px minmax(300px,490px) 180px;gap:24px;align-items:center}
+.card,.settings{border:3px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);padding:16px;transform:rotate(-.7deg)}
+.controls{display:grid;gap:16px;font-size:13px;font-weight:700}
+.friend-names{display:grid;gap:8px;background:var(--mint);border:3px solid var(--ink);padding:10px;box-shadow:3px 3px 0 var(--ink);transform:rotate(1deg)}
+.friend-names[hidden]{display:none!important}
+.friend-names label{display:grid;gap:4px;font-size:11px}
+.friend-names input{min-width:0;border:3px solid var(--ink);border-radius:4px;background:var(--paper);padding:8px;font-weight:700}
+.friend-names small{font-size:10px}
+.controls label{display:grid;gap:6px}
+.controls select{border:3px solid var(--ink);background:var(--yellow);padding:10px;font-weight:700;border-radius:5px}
+.segmented{display:grid;gap:7px}
+.segmented button,.choice button{background:var(--paper);border:3px solid var(--ink);padding:9px 7px;font-size:12px;font-weight:700}
+.segmented button.selected,.choice button.selected{background:var(--pink)}
+.choice{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.choice span{width:100%}
+.mark-choice{font-size:18px!important;width:46px}
+.scoreboard{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.scoreboard div{border:3px solid var(--ink);background:var(--yellow);box-shadow:3px 3px 0 var(--ink);padding:7px;text-align:center;transform:rotate(-1deg)}
+.scoreboard div:nth-child(2){background:var(--mint);transform:rotate(1deg)}
+.scoreboard div:nth-child(3){background:var(--pink)}
+.scoreboard b{font-size:10px;display:block}
+.scoreboard strong{font:28px "Lilita One"}
+.streak{text-align:center;background:var(--orange);border:3px solid var(--ink);padding:5px;margin:5px 0;font-weight:bold;transform:rotate(1deg)}
+.board-wrap{position:relative;width:min(100%,440px);margin:auto}
+.board{display:grid;grid-template-columns:repeat(3,1fr);aspect-ratio:1;background:var(--ink);gap:5px;border:5px solid var(--ink);box-shadow:var(--shadow)}
+.cell{border:0;background:var(--paper);font:clamp(54px,13vw,105px)/1 "Lilita One";display:grid;place-items:center;min-width:0;transition:transform .12s}
+.cell:not(:disabled):hover{background:#fff7ca;transform:rotate(1deg) scale(.96)}
+.cell.x{color:var(--pink)}
+.cell.o{color:#e3ac00}
+.mark{width:78%;height:78%;overflow:visible}
+.mark line,.mark circle{fill:none;stroke:currentColor;stroke-width:12;stroke-linecap:round;animation:draw .25s ease-out both}
+.mark circle{stroke-dasharray:240;stroke-dashoffset:240;animation:circle .35s ease-out forwards}
+.win{background:var(--mint)!important}
+.win-line{position:absolute;height:10px;background:var(--mint);border:3px solid var(--ink);transform-origin:left center;z-index:2;display:none;border-radius:10px}
+.primary,.secondary{border:3px solid var(--ink);font-weight:700;padding:13px 18px;box-shadow:var(--shadow);margin-top:18px}
+.primary{background:var(--pink);font-size:17px}
+.secondary{background:var(--yellow);margin:8px 4px 0}
+.play-area{text-align:center}
+.mascot-zone{text-align:center}
+.mascot-card{position:relative;display:inline-block;background:var(--yellow);border:3px solid var(--ink);box-shadow:var(--shadow);padding:8px 12px 1px;transform:rotate(-2deg);margin-top:16px}
+.bot-chip{position:absolute;right:-18px;top:-12px;background:var(--pink);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:10px;font-weight:700;padding:4px 6px;transform:rotate(7deg);white-space:nowrap}
+.spark{position:absolute;color:var(--pink);font:22px "Lilita One";text-shadow:2px 2px 0 var(--ink);animation:twinkle 1s ease-in-out infinite alternate}.spark-a{left:-14px;top:12px}.spark-b{right:-13px;bottom:25px;animation-delay:.45s}.bot-status{margin:0 0 8px;background:var(--ink);color:var(--yellow);font-size:9px;font-weight:700;padding:5px;letter-spacing:.5px}
+.bubble{position:relative;border:3px solid var(--ink);background:#fff;box-shadow:var(--shadow);padding:12px;font-weight:700;transform:rotate(2deg);min-height:54px}
+.bubble:after{content:"";position:absolute;bottom:-13px;left:50%;border:10px solid transparent;border-top-color:var(--ink);border-bottom:0}
+.mascot{width:160px;margin:8px auto 0;filter:drop-shadow(4px 4px 0 var(--ink))}
+.mascot.idle{animation:bob 2.1s ease-in-out infinite}
+.mascot.thinking{animation:think .55s ease-in-out infinite alternate}
+.mascot.smug{animation:smug .6s ease-in-out infinite alternate}
+.body{fill:var(--yellow);stroke:var(--ink);stroke-width:5}
+.shine{fill:none;stroke:#fff9;stroke-width:7;stroke-linecap:round}.crown{fill:var(--pink);stroke:var(--ink);stroke-width:5;stroke-linejoin:round}.brows path{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round}.cheeks circle{fill:var(--pink);opacity:.75}.medal{display:none;fill:none;stroke:var(--ink);stroke-width:5;stroke-linejoin:round}
+.eyes ellipse{fill:#fff;stroke:var(--ink);stroke-width:4}
+.eyes circle{fill:var(--ink)}
+.smile,.hands{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round}
+.glasses,.sweat{display:none;stroke:var(--ink);stroke-width:4;fill:#111}
+.sweat{fill:var(--blue)}
+.mascot.thinking .sweat,.mascot.smug .glasses{display:block}
+.mascot.thinking .eyes circle{transform:translateX(4px)}.mascot.shocked .eyes ellipse{transform:scaleY(1.18);transform-origin:center}.mascot.clap .medal{display:block}.mascot.smug .brows{display:none}.mascot.facepalm .cheeks{display:none}
+.mascot.shocked .smile{d:path('M78 125q12-15 24 0q-12 18-24 0')}
+.mascot.facepalm .hands{d:path('M25 142q25 10 46-50m84 50q-22 8-17 28')}
+.mascot.clap{animation:clap .35s infinite alternate}
+.mascot-name{font:17px "Lilita One";transform:rotate(-2deg)}
+.mascot-name small{display:block;font:9px "Space Grotesk"}
+.settings{display:flex;gap:18px;align-items:center;justify-content:center;margin:30px auto 0;width:max-content;max-width:100%;font-size:13px;font-weight:bold}
+.settings input{accent-color:var(--pink);width:18px;height:18px}
+.text-btn{background:none;border:0;text-decoration:underline;font-weight:bold}
+.achievements{max-width:850px;margin:42px auto 0;text-align:center}.achievement-head h2{font:clamp(32px,6vw,52px)/.9 "Lilita One";margin:12px 0 7px}.achievement-head h2 span{color:var(--pink);text-shadow:3px 3px 0 var(--ink)}.achievement-head>p:last-child{font-weight:700;margin:0 0 18px}.achievement-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.achievement{display:grid;gap:7px;justify-items:center;min-height:145px;background:color-mix(in srgb,var(--paper) 88%,#777);border:3px solid var(--ink);padding:14px 8px;box-shadow:4px 4px 0 var(--ink);filter:grayscale(1);opacity:.65;transition:transform .2s,filter .2s,opacity .2s}.achievement:nth-child(odd){transform:rotate(-1.5deg)}.achievement:nth-child(even){transform:rotate(1.5deg)}.achievement span{font-size:34px;filter:grayscale(1)}.achievement strong{display:block;font:18px "Lilita One"}.achievement small{display:block;font-size:10px;font-weight:700;margin-top:4px}.achievement.unlocked{background:var(--mint);filter:none;opacity:1}.achievement.unlocked:nth-child(2n){background:var(--yellow)}.achievement.unlocked span{filter:none;animation:trophy .6s ease-in-out infinite alternate}.achievement.unlocked:hover{transform:translate(-2px,-2px) rotate(0deg);box-shadow:7px 7px 0 var(--ink)}
+.doodle{position:fixed;font:50px "Lilita One";z-index:-1;color:var(--orange);opacity:.75}
+.d1{left:5%;top:30%;transform:rotate(-20deg)}
+.d2{right:5%;top:18%;transform:rotate(15deg)}
+.d3{right:7%;bottom:12%;color:var(--blue)}
+.modal[hidden]{display:none!important}
+.modal{position:fixed;inset:0;background:#1119;display:grid;place-items:center;padding:20px;z-index:5;overflow:auto}
+.modal-card{position:relative;text-align:center;background:var(--paper);border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:30px;max-width:440px;animation:pop .25s}
+.modal-card h2{font:42px "Lilita One";margin:8px}
+.modal-card p{font-weight:700}
+.close{position:absolute;right:10px;top:10px;width:35px;height:35px;box-shadow:3px 3px 0 var(--ink)}
+#resultEmoji{font-size:55px}
+.conf{position:fixed;top:-30px;z-index:10;font:25px "Lilita One";animation:fall 1.5s linear forwards;pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.shake{animation:shake .35s}
+@keyframes draw{from{stroke-dasharray:150;stroke-dashoffset:150}
+to{stroke-dashoffset:0}
+}
+@keyframes circle{to{stroke-dashoffset:0}
+}
+@keyframes drop{from{transform:translateY(-80px)}
+to{transform:translateY(0)}
+}
+@keyframes pop{from{transform:scale(.7) rotate(-4deg)}
+to{transform:scale(1) rotate(-1deg)}
+}
+@keyframes shake{25%{transform:translateX(-7px)}
+75%{transform:translateX(7px)}
+}
+@keyframes clap{to{transform:rotate(4deg) scale(1.05)}
+}
+@keyframes bob{50%{transform:translateY(-7px) rotate(2deg)}}
+@keyframes think{to{transform:translateX(6px) rotate(2deg)}}
+@keyframes smug{to{transform:rotate(-4deg) scale(1.04)}}
+@keyframes twinkle{to{transform:scale(1.25) rotate(20deg)}}
+@keyframes trophy{to{transform:translateY(-5px) rotate(8deg)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(500deg);opacity:0}
+}
+@media(max-width:850px){.game-shell{grid-template-columns:1fr;max-width:510px;margin:auto}
+.controls{order:3;grid-template-columns:1fr 1fr}
+.segmented{grid-column:span 2}
+.mascot-zone{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.mascot{grid-row:span 2}
+.mascot-name{margin:0}
+.bubble{margin:0}
+.doodle{display:none}
+.achievement-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:400px){main{padding:0 12px}
+.settings{gap:9px;padding:12px;font-size:11px}
+.controls{grid-template-columns:1fr}
+.segmented{grid-column:auto}
+.achievement-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+
